@@ -1,0 +1,21 @@
+.main {
+  min-height: 100vh;
+}
+
+.footer {
+  padding: 4rem 2rem;
+  background: var(--background);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+}

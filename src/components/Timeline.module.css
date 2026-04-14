@@ -1,0 +1,126 @@
+.timeline {
+  padding: 10rem 2rem;
+  background: var(--secondary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.visualColumn {
+  display: flex;
+  justify-content: center;
+}
+
+.imageCard {
+  background: var(--background);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 2rem;
+  width: 100%;
+  aspect-ratio: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.item:hover .imageCard {
+  transform: scale(1.02);
+  border-color: var(--accent);
+}
+
+.itemSvg {
+  width: 100%;
+  height: auto;
+}
+
+.contentColumn {
+  position: relative;
+}
+
+.yearBadge {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.institution {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .item {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .visualColumn {
+    order: 2;
+  }
+  
+  .contentColumn {
+    order: 1;
+  }
+}
