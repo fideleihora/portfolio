@@ -32,6 +32,9 @@ const translations: Translations = {
   },
   aboutMe: { en: 'About Me', sw: 'Kuhusu Mimi', fr: 'À propos de moi', rw: 'Ibyerekeye' },
   letsTalk: { en: "Let's Talk", sw: "Tuzungumze", fr: "Parlons-en", rw: "Tuvugane" },
+  hireMe: { en: 'Hire Me', sw: 'Niajiri', fr: 'Recrutez-moi', rw: 'Nshaka Akazi' },
+  collaborate: { en: 'Collaborate', sw: 'Tushirikiane', fr: 'Collaborer', rw: 'Ubufatanye' },
+  assist: { en: 'Assist', sw: 'Saidia', fr: 'Assister', rw: 'Ubufasha' },
 
   // About
   aboutTitle: { en: 'About Me', sw: 'Kuhusu Mimi', fr: 'À propos de moi', rw: 'Ibyerekeye' },

@@ -3,14 +3,14 @@
   "dailyPageViews": {
     "2026-04-16": 10,
     "2026-04-17": 7,
-    "2026-04-18": 8
+    "2026-04-18": 12
   },
   "lastSubmissionAt": "2026-04-17T15:43:22.948Z",
-  "totalPageViews": 25,
+  "totalPageViews": 29,
   "totalVisitors": 1,
   "trafficSources": {
-    "direct": 14,
-    "referral": 11,
+    "direct": 16,
+    "referral": 13,
     "social": 0
   },
   "visitorIds": [

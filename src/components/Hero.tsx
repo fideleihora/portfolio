@@ -75,10 +75,21 @@ export const Hero = () => {
                 {t('description')}
               </p>
               <div className={styles.actions}>
-                <a href="/about" className={styles.primaryBtn}>
-                  {t('aboutMe')} <ArrowRight size={20} />
+                <a href="/contact?type=hire" className={styles.primaryBtn}>
+                  {t('hireMe')}
                 </a>
-                <a href="/contact" className={styles.secondaryBtn}>
+                <a href="/contact?type=collaborate" className={styles.secondaryBtn}>
+                  {t('collaborate')}
+                </a>
+                <a href="/contact?type=assist" className={styles.secondaryBtn}>
+                  {t('assist')}
+                </a>
+              </div>
+              <div className={styles.subActions}>
+                <a href="/about" className={styles.linkBtn}>
+                  {t('aboutMe')} <ArrowRight size={16} />
+                </a>
+                <a href="/contact" className={styles.linkBtn}>
                   {t('letsTalk')}
                 </a>
               </div>
