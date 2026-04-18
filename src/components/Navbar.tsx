@@ -7,10 +7,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage, type Language } from '@/context/LanguageContext'
 import { useTheme } from '@/context/ThemeContext'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Menu, X } from 'lucide-react'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const { language, setLanguage, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
@@ -22,6 +23,26 @@ export const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close mobile menu when pathname changes
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMobileMenuOpen(false)
+    }
+  }, [pathname, mobileMenuOpen])
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
 
   const navItems = [
     { name: t('home'), href: '/' },
@@ -36,7 +57,7 @@ export const Navbar = () => {
   ]
 
   return (
-    <nav className={`${styles.nav} ${scrolled || pathname !== '/' ? styles.scrolled : ''}`}>
+    <nav className={`${styles.nav} ${scrolled || pathname !== '/' ? styles.scrolled : ''} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>
       <div className={styles.container}>
         <Link href="/">
           <motion.div 
@@ -47,8 +68,9 @@ export const Navbar = () => {
             IF
           </motion.div>
         </Link>
+        
         <div className={styles.rightSection}>
-          <ul className={styles.navLinks}>
+          <ul className={`${styles.navLinks} ${mobileMenuOpen ? styles.showMobileLinks : ''}`}>
             {navItems.map((item, index) => (
               <motion.li 
                 key={item.href}
@@ -86,6 +108,14 @@ export const Navbar = () => {
                 </button>
               ))}
             </div>
+
+            <button 
+              className={styles.mobileToggle}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </div>

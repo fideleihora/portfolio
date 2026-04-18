@@ -18,13 +18,13 @@ export const Memories = () => {
     {
       title: t('leadershipTitle'),
       description: t('leadershipDesc'),
-      images: ['/gallery/i2.jpeg', '/gallery/i4.jpeg', '/gallery/i5.jpeg', '/gallery/i6.jpeg'],
+      images: ['/gallery/i2.jpeg', '/gallery/i6.jpeg'],
       direction: 'left' as const
     },
     {
       title: t('socialTitle'),
       description: t('socialDesc'),
-      images: ['/gallery/i3.jpeg', '/gallery/i8.jpeg', '/gallery/i9.jpeg'],
+      images: ['/gallery/i8.jpeg', '/gallery/i9.jpeg'],
       direction: 'right' as const
     }
   ]

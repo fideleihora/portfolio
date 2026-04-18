@@ -124,8 +124,88 @@
   box-shadow: 0 0 10px var(--accent);
 }
 
-@media (max-width: 768px) {
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+@media (max-width: 968px) {
+  .rightSection {
+    gap: 1rem;
+  }
+  
   .navLinks {
-    display: none;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 0;
+  }
+
+  .mobileToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navLinks {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--background);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+  }
+
+  .showMobileLinks {
+    right: 0;
+  }
+
+  .navLinks li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navLinks a {
+    display: block;
+    font-size: 1.25rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .controls {
+    gap: 0.5rem;
+  }
+
+  .langSwitcher {
+    padding: 0.1rem;
+  }
+
+  .langBtn {
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .langSwitcher {
+    display: none; /* Hide language switcher on very small screens to save space, or we could move it to the menu */
+  }
+
+  .logo {
+    font-size: 1.25rem;
   }
 }

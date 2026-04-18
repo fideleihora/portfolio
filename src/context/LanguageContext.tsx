@@ -75,6 +75,13 @@ const translations: Translations = {
   socialMedia: { en: 'Social Media', sw: 'Mitandao ya Kijamii', fr: 'Réseaux sociaux', rw: 'Imbuga nkoranyambaga' },
   namePlaceholder: { en: 'Your Name', sw: 'Jina Lako', fr: 'Votre nom', rw: 'Izina ryawe' },
   emailPlaceholder: { en: 'Your Email', sw: 'Barua Pepe Yako', fr: 'Votre e-mail', rw: 'Imeri yawe' },
+  subject: { en: 'Subject', sw: 'Mada', fr: 'Sujet', rw: 'Umutwe w\'ubutumwa' },
+  subjectPlaceholder: { 
+    en: 'Project, collaboration, or opportunity', 
+    sw: 'Mradi, ushirikiano, au fursa', 
+    fr: 'Projet, collaboration ou opportunité', 
+    rw: 'Umushinga, ubufatanye, cyangwa amahirwe' 
+  },
   messagePlaceholder: { en: 'Your Message', sw: 'Ujumbe Wako', fr: 'Votre message', rw: 'Ubutumwa bwawe' },
   sendMessage: { en: 'Send Message', sw: 'Tuma Ujumbe', fr: 'Envoyer le message', rw: 'Ohereza ubutumwa' },
 
@@ -125,33 +132,34 @@ const translations: Translations = {
     rw: 'Kubera ko amakuru arambuye ku bihembo ataraba menshi hano, iki gice cyerekana ibyubahiro by’ingenzi mu rugendo rwanjye.'
   },
   recognitionLabel: { en: 'Recognition', sw: 'Utambuzi', fr: 'Reconnaissance', rw: 'Ishimwe' },
-  honorOneTitle: { en: 'Academic Commitment', sw: 'Ukwitanga mu Masomo', fr: 'Engagement Académique', rw: 'Kwitanga mu Masomo' },
+  viewCertificate: { en: 'View Certificate', sw: 'Tazama Cheti', fr: 'Voir le certificat', rw: 'Reba Impamyabumenyi' },
+  honorOneTitle: { en: 'Itorero Indangamirwa (15th Cohort)', sw: 'Itorero Indangamirwa (Kikundi cha 15)', fr: 'Itorero Indangamirwa (15ème Cohorte)', rw: 'Itorero Indangamirwa (Icyiciro cya 15)' },
   honorOneDesc: {
-    en: 'A strong commitment to STEM learning, reflected in consistent focus on mathematics, physics, and computer science.',
-    sw: 'Ujitoleaji thabiti katika masomo ya STEM unaoonekana kupitia mkazo wa hisabati, fizikia, na sayansi ya kompyuta.',
-    fr: 'Un engagement solide envers les études STEM, visible dans l’attention portée aux mathématiques, à la physique et à l’informatique.',
-    rw: 'Kwitanga gukomeye mu masomo ya STEM, bigaragarira mu kwibanda ku mibare, ubugenge n’ikoranabuhanga.'
+    en: 'Successfully participated in the national service program, focusing on leadership, patriotism, and civic engagement at the National Ubutore Development Centre.',
+    sw: 'Alishiriki vyema katika mpango wa huduma ya kitaifa, akizingatia uongozi, uzalendo, na ushiriki wa kijamii katika Kituo cha Kitaifa cha Maendeleo ya Ubutore.',
+    fr: 'A participé avec succès au programme de service national, axé sur le leadership, le patriotisme et l\'engagement civique au Centre National de Développement d\'Ubutore.',
+    rw: 'Yitabiriye neza porogaramu y\'urugerero, yibanda ku buyobozi, gukunda igihugu, n\'uburere mboneragihugu mu Kigo cy\'Igihugu gishinzwe Ubutore.'
   },
-  honorTwoTitle: { en: 'Community Service Spirit', sw: 'Roho ya Huduma kwa Jamii', fr: 'Esprit de Service', rw: 'Umutima wo Gukorera Abandi' },
+  honorTwoTitle: { en: 'Beyond Success Leadership Training', sw: 'Mafunzo ya Uongozi ya Beyond Success', fr: 'Formation au Leadership Beyond Success', rw: 'Amahugurwa y\'Ubuyobozi ya Beyond Success' },
   honorTwoDesc: {
-    en: 'National service and community-oriented experiences show readiness to contribute beyond personal success.',
-    sw: 'Huduma ya taifa na ubunararibonye bushingiye kwa jamii vinaonyesha utayari wa kuchangia zaidi ya mafanikio binafsi.',
-    fr: 'Le service national et les expériences tournées vers la communauté montrent une volonté de contribuer au-delà de la réussite personnelle.',
-    rw: 'Urugerero n’ibindi bikorwa byo gukorera abaturage bigaragaza ubushake bwo gufasha kurenga inyungu bwite.'
+    en: 'Completed ethical leadership and character development training, emphasizing integrity and values-based leadership in community service.',
+    sw: 'Alihitimu mafunzo ya uongozi wa kimaadili na kukuza tabia, akisisitiza uadilifu na uongozi unaozingatia maadili katika huduma ya jamii.',
+    fr: 'A terminé une formation sur le leadership éthique et le développement du caractère, mettant l\'accent sur l\'intégrité et le leadership fondé sur les valeurs.',
+    rw: 'Yarangije amahugurwa y\'ubuyobozi bushingiye ku ndangagaciro, yibanda ku bunyangamugayo n\'ubuyobozi bufitiye abandi akamaro.'
   },
-  honorThreeTitle: { en: 'Leadership and Discipline', sw: 'Uongozi na Nidhamu', fr: 'Leadership et Discipline', rw: 'Ubuyobozi n’Ikinyabupfura' },
+  honorThreeTitle: { en: 'Digital Skills Foundation', sw: 'Msingi wa Ujuzi wa Kidijitali', fr: 'Fondation des Compétences Numériques', rw: 'Ubumenyi mu Ikoranabuhanga rya Kijyambere' },
   honorThreeDesc: {
-    en: 'Leadership growth, discipline, and teamwork stand out as qualities shaped through training, study, and service.',
-    sw: 'Ukuaji wa uongozi, nidhamu, na kazi ya pamoja vinaonekana kama sifa zilizojengwa na mafunzo, masomo, na huduma.',
-    fr: 'Le leadership, la discipline et le travail d’équipe ressortent comme des qualités façonnées par la formation, les études et le service.',
-    rw: 'Ubuyobozi, ikinyabupfura n’ubufatanye bigaragara nk’imico yakuze binyuze mu mahugurwa, amasomo n’imirimo y’ubwitange.'
+    en: 'Demonstrated proficiency in computer applications and digital tools, ensuring readiness for modern technology and data-driven environments.',
+    sw: 'Alionyesha umahiri katika programu za kompyuta na zana za kidijitali, akihakikisha yuko tayari kwa teknolojia ya kisasa.',
+    fr: 'A démontré une maîtrise des applications informatiques et des outils numériques, assurant une préparation aux environnements technologiques modernes.',
+    rw: 'Yagaragaje ubumenyi mu gukoresha porogaramu za mudasobwa n\'ibikoresho by\'ikoranabuhanga bigezweho.'
   },
-  honorFourTitle: { en: 'Creative Persistence', sw: 'Uvumilivu wa Ubunifu', fr: 'Persévérance Créative', rw: 'Kwihangana mu Buhanzi' },
+  honorFourTitle: { en: 'English Proficiency Certification', sw: 'Cheti cha Umahiri wa Kiingereza', fr: 'Certification de Maîtrise de l\'Anglais', rw: 'Impamyabumenyi y\'ururimi rw\'Icyongereza' },
   honorFourDesc: {
-    en: 'Ongoing interest in video editing and visual storytelling reflects creativity practiced with consistency over time.',
-    sw: 'Shauku ya kuendelea ya uhariri wa video na usimulizi wa picha inaonyesha ubunifu unaofanyiwa mazoezi kwa uthabiti.',
-    fr: 'L’intérêt continu pour le montage vidéo et le récit visuel reflète une créativité exercée avec constance.',
-    rw: 'Gukomeza gukunda gutunganya amavideo no kuvuga inkuru mu mashusho bigaragaza ubuhanzi bukozweho buri gihe.'
+    en: 'Achieved professional level English proficiency, validating advanced communication skills for international academic and professional success.',
+    sw: 'Alifikia kiwango cha kitaalamu cha Kiingereza, akithibitisha ujuzi wa mawasiliano ya hali ya juu kwa mafanikio ya kimataifa.',
+    fr: 'A atteint un niveau professionnel de maîtrise de l\'anglais, validant des compétences de communication avancées.',
+    rw: 'Yageze ku rwego rwo hejuru mu rurimi rw\'Icyongereza, rwerekana ko ashoboye gushyikirana n\'abandi mu rwego mpuzamahanga.'
   },
 
   // Timeline

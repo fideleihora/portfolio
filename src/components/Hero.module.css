@@ -220,4 +220,16 @@
     width: 260px;
     height: 260px;
   }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
 }

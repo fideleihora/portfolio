@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 type Theme = 'dark' | 'light'
+const DEFAULT_THEME: Theme = 'light'
 
 interface ThemeContextType {
   theme: Theme
@@ -12,7 +13,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('dark')
+  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)

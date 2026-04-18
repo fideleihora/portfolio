@@ -8,9 +8,9 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 import { ScrollReveal } from './ScrollReveal'
 
-const images = Array.from({ length: 9 }, (_, index) => ({
-  src: `/gallery/i${index + 1}.jpeg`,
-  alt: `Gallery photo ${index + 1}`,
+const images = [1, 2, 6, 7, 8, 9].map((num) => ({
+  src: `/gallery/i${num}.jpeg`,
+  alt: `Gallery photo ${num}`,
 }))
 
 export const Gallery = () => {

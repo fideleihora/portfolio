@@ -1,6 +1,6 @@
 'use client'
 
-import { Award, Flag, Medal, ShieldCheck } from 'lucide-react'
+import { Award, Flag, Medal, ShieldCheck, ExternalLink } from 'lucide-react'
 import styles from './Honors.module.css'
 import { ScrollReveal } from './ScrollReveal'
 import { useLanguage } from '@/context/LanguageContext'
@@ -13,21 +13,25 @@ export const Honors = () => {
       title: t('honorOneTitle'),
       description: t('honorOneDesc'),
       icon: <Award size={26} />,
+      link: '/certificates/itorero.pdf',
     },
     {
       title: t('honorTwoTitle'),
       description: t('honorTwoDesc'),
       icon: <Flag size={26} />,
+      link: '/certificates/beyond-success.pdf',
     },
     {
       title: t('honorThreeTitle'),
       description: t('honorThreeDesc'),
       icon: <ShieldCheck size={26} />,
+      link: '/certificates/digital-skills.pdf',
     },
     {
       title: t('honorFourTitle'),
       description: t('honorFourDesc'),
       icon: <Medal size={26} />,
+      link: '/certificates/english-proficiency.pdf',
     },
   ]
 
@@ -52,6 +56,16 @@ export const Honors = () => {
                   <span className={styles.eyebrow}>{t('recognitionLabel')}</span>
                   <h3 className={styles.title}>{honor.title}</h3>
                   <p className={styles.description}>{honor.description}</p>
+                  {honor.link && (
+                    <a 
+                      href={honor.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className={styles.certificateLink}
+                    >
+                      {t('viewCertificate')} <ExternalLink size={14} />
+                    </a>
+                  )}
                 </div>
               </article>
             </ScrollReveal>

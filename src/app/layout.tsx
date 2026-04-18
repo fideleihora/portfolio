@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Footer } from "@/components/Footer";
 import { AIAssistant } from "@/components/AIAssistant";
+import { PortfolioAnalyticsTracker } from "@/components/PortfolioAnalyticsTracker";
 
 export const metadata: Metadata = {
   title: "Ihorindengera Fidele | Portfolio",
@@ -18,10 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+    <html lang="en" data-theme="light" style={{ scrollBehavior: 'smooth' }}>
       <body>
         <ThemeProvider>
           <LanguageProvider>
+            <PortfolioAnalyticsTracker />
             <CustomCursor />
             <Navbar />
             {children}

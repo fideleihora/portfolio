@@ -11,7 +11,6 @@ import { ScrollReveal } from './ScrollReveal'
 
 const slides = [
   { src: '/F1.jpeg', alt: 'Ihorindengera Fidele 1' },
-  { src: '/F2.jpeg', alt: 'Ihorindengera Fidele 2' },
   { src: '/F3.jpeg', alt: 'Ihorindengera Fidele 3' },
 ]
 

@@ -1,69 +1,68 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import styles from './Stats.module.css'
 import { motion } from 'framer-motion'
 import { Users, MessageSquare, TrendingUp, BarChart3 } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 import { ScrollReveal } from './ScrollReveal'
+import { fetchAnalyticsSummary, subscribeToAnalytics } from '@/lib/portfolioAnalytics'
+import { emptyAnalyticsSummary, type AnalyticsSummary, type TrafficSource } from '@/lib/portfolioData'
+
+const dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+
+const trafficLabels: Record<TrafficSource, string> = {
+  direct: 'Direct',
+  referral: 'Referral',
+  social: 'Social',
+}
 
 export const Stats = () => {
   const { t } = useLanguage()
+  const [analytics, setAnalytics] = useState<AnalyticsSummary>(emptyAnalyticsSummary)
+
+  useEffect(() => {
+    const syncAnalytics = async () => {
+      setAnalytics(await fetchAnalyticsSummary())
+    }
+
+    void syncAnalytics()
+    return subscribeToAnalytics(() => {
+      void syncAnalytics()
+    })
+  }, [])
+
+  const activityPeak = Math.max(...analytics.weeklyActivity, 1)
+  const totalTraffic = Object.values(analytics.trafficSources).reduce((sum, value) => sum + value, 0)
+  const weeklyVisits = analytics.weeklyActivity.reduce((sum, value) => sum + value, 0)
+  const messageRate = analytics.totalVisitors > 0
+    ? `${Math.round((analytics.contactSubmissions / analytics.totalVisitors) * 100)}%`
+    : '0%'
+
+  const topTrafficSources = (Object.entries(analytics.trafficSources) as Array<[TrafficSource, number]>)
+    .map(([source, count]) => ({
+      count,
+      label: trafficLabels[source],
+      share: totalTraffic > 0 ? Math.round((count / totalTraffic) * 100) : 0,
+      source,
+    }))
+    .sort((left, right) => right.count - left.count)
 
   const statsData = [
     {
-      label: t('visitors'),
-      value: '1,248',
-      change: '+12%',
-      icon: <Users size={32} />,
       color: '#3b82f6',
-      illustration: (
-        <svg viewBox="0 0 200 100" className={styles.svgChart}>
-          <motion.path
-            d="M0,80 Q30,40 60,60 T120,30 T180,50 T200,10"
-            fill="none"
-            stroke="#3b82f6"
-            strokeWidth="4"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-          <rect x="0" y="0" width="200" height="100" fill="url(#grad-blue)" opacity="0.1" />
-          <defs>
-            <linearGradient id="grad-blue" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.5 }} />
-              <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 0 }} />
-            </linearGradient>
-          </defs>
-        </svg>
-      )
+      icon: <Users size={32} />,
+      label: t('visitors'),
+      meta: `${analytics.totalPageViews.toLocaleString()} page views`,
+      value: analytics.totalVisitors.toLocaleString(),
     },
     {
-      label: t('messages'),
-      value: '142',
-      change: '+5%',
-      icon: <MessageSquare size={32} />,
       color: '#10b981',
-      illustration: (
-        <svg viewBox="0 0 200 100" className={styles.svgChart}>
-          <motion.path
-            d="M0,70 Q40,80 80,40 T140,50 T200,20"
-            fill="none"
-            stroke="#10b981"
-            strokeWidth="4"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
-          />
-          <rect x="0" y="0" width="200" height="100" fill="url(#grad-green)" opacity="0.1" />
-          <defs>
-            <linearGradient id="grad-green" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style={{ stopColor: '#10b981', stopOpacity: 0.5 }} />
-              <stop offset="100%" style={{ stopColor: '#10b981', stopOpacity: 0 }} />
-            </linearGradient>
-          </defs>
-        </svg>
-      )
-    }
+      icon: <MessageSquare size={32} />,
+      label: t('messages'),
+      meta: `${messageRate} visitor-to-message rate`,
+      value: analytics.contactSubmissions.toLocaleString(),
+    },
   ]
 
   return (
@@ -85,11 +84,8 @@ export const Stats = () => {
                   <div>
                     <h3 className={styles.label}>{stat.label}</h3>
                     <p className={styles.value}>{stat.value}</p>
-                    <span className={styles.change}>{stat.change}</span>
+                    <span className={styles.change}>{stat.meta}</span>
                   </div>
-                </div>
-                <div className={styles.illustrationWrapper}>
-                  {stat.illustration}
                 </div>
               </div>
             </ScrollReveal>
@@ -103,69 +99,48 @@ export const Stats = () => {
                 <BarChart3 size={24} />
                 <h3>{t('activity')}</h3>
               </div>
+              <p className={styles.detailSummary}>{weeklyVisits} page views tracked in the last 7 days.</p>
               <div className={styles.barGrid}>
-                {[60, 80, 45, 90, 70, 55, 75].map((h, i) => (
-                  <div key={i} className={styles.barWrapper}>
-                    <motion.div 
-                      className={styles.bar} 
+                {analytics.weeklyActivity.map((count, index) => (
+                  <div key={`${dayLabels[index]}-${index}`} className={styles.barWrapper}>
+                    <span className={styles.barValue}>{count}</span>
+                    <motion.div
+                      className={styles.bar}
                       initial={{ height: 0 }}
-                      whileInView={{ height: `${h}%` }}
+                      whileInView={{ height: `${Math.max((count / activityPeak) * 100, count > 0 ? 12 : 4)}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
+                      transition={{ duration: 0.8, delay: 0.3 + (index * 0.08) }}
                     />
-                    <span className={styles.day}>{['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}</span>
+                    <span className={styles.day}>{dayLabels[index]}</span>
                   </div>
                 ))}
               </div>
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal direction="left" delay={0.4}>
             <div className={styles.detailCard}>
               <div className={styles.detailHeader}>
                 <TrendingUp size={24} />
                 <h3>{t('traffic')}</h3>
               </div>
+              <p className={styles.detailSummary}>Traffic sources are grouped from live visits tracked by the server.</p>
               <ul className={styles.sourcesList}>
-                <li>
-                  <span>Direct Search</span>
-                  <div className={styles.progressTrack}>
-                    <motion.div 
-                      className={styles.progressBar} 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '65%' }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.8 }}
-                    />
-                  </div>
-                  <span>65%</span>
-                </li>
-                <li>
-                  <span>Social Media</span>
-                  <div className={styles.progressTrack}>
-                    <motion.div 
-                      className={styles.progressBar} 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '25%' }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 1 }}
-                    />
-                  </div>
-                  <span>25%</span>
-                </li>
-                <li>
-                  <span>Referral</span>
-                  <div className={styles.progressTrack}>
-                    <motion.div 
-                      className={styles.progressBar} 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '10%' }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 1.2 }}
-                    />
-                  </div>
-                  <span>10%</span>
-                </li>
+                {topTrafficSources.map((item, index) => (
+                  <li key={item.source}>
+                    <span>{item.label}</span>
+                    <div className={styles.progressTrack}>
+                      <motion.div
+                        className={styles.progressBar}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${item.share}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, delay: 0.5 + (index * 0.1) }}
+                      />
+                    </div>
+                    <span>{item.share}%</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </ScrollReveal>

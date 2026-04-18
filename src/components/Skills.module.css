@@ -17,8 +17,26 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .skills {
+    padding: 6rem 1.25rem;
+  }
+  
+  .grid {
+    gap: 1.5rem;
+  }
+
+  .cardHeader {
+    padding: 1.5rem 1.5rem 0.5rem;
+  }
+
+  .skillList {
+    padding: 0.5rem 1.5rem 2rem;
+  }
 }
 
 .card {
