@@ -14,6 +14,15 @@ export const CustomCursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig)
 
   useEffect(() => {
+    const handleTouch = () => {
+      // If we detect a touch event, it's a touch device
+      // We hide the cursor entirely
+      const cursorElement = document.querySelector(`.${styles.cursor}`) as HTMLElement
+      if (cursorElement) cursorElement.style.display = 'none'
+    }
+
+    window.addEventListener('touchstart', handleTouch, { once: true })
+    
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
